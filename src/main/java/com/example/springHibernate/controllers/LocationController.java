@@ -4,9 +4,7 @@ import com.example.springHibernate.models.Location;
 import com.example.springHibernate.models.User;
 import com.example.springHibernate.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +24,7 @@ public class LocationController {
         return locationService.findById(id);
     }
 
-    @GetMapping("location/{id}/users")
+    @GetMapping("/location/{id}/users")
     public List<User> getUsersByLocation(@PathVariable Integer id){
         Optional<Location> location = locationService.findById(id);
 
@@ -35,6 +33,11 @@ public class LocationController {
             return newLocation.getUsers();
         }
         return null;
+    }
+
+    @PostMapping("/locations/addNew")
+    public void AddLocation(@RequestBody Location location) {
+        locationService.AddLocation(location);
     }
 
 }

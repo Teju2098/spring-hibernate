@@ -21,4 +21,12 @@ public class UserService {
     public Optional<User> getUserById(Integer Id) {
         return userRepository.findById(Id);
     }
+
+    public List<User> getUsersByLocation(Integer id) {
+        return userRepository.findByLocationId(id);
+    }
+
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
 }

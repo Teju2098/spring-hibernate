@@ -20,4 +20,8 @@ public class LocationService {
     public Optional<com.example.springHibernate.models.Location> findById(Integer id) {
         return locationRepository.findById(id);
     }
+
+    public void AddLocation(Location location) {
+        locationRepository.save(location);
+    }
 }

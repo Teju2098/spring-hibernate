@@ -2,10 +2,9 @@ package com.example.springHibernate.controllers;
 
 import com.example.springHibernate.models.Post;
 import com.example.springHibernate.services.PostService;
+import com.example.springHibernate.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,5 +22,15 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public Optional<Post> getPostById(@PathVariable Integer id) {
         return postService.findById(id);
+    }
+
+    @GetMapping("/posts/user/{id}/posts")
+    public List<Post> GetPostsByUser(@PathVariable Integer id) {
+        return postService.getPostsByUser(id);
+    }
+
+    @PostMapping("/posts/addNew")
+    public void AddPost(@RequestBody Post post) {
+        postService.addPost(post);
     }
 }

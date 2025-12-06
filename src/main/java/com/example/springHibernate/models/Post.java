@@ -15,9 +15,19 @@ public class Post {
     @Column(name = "post_date")
     private LocalDateTime postdate;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userid", insertable = false, updatable = false)
     private  User user;
     private String details;
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    private Integer userid;
 
     public Post() {
 

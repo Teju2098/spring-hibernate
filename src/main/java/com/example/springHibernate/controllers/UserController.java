@@ -1,11 +1,10 @@
 package com.example.springHibernate.controllers;
 
+import com.example.springHibernate.models.Post;
 import com.example.springHibernate.models.User;
 import com.example.springHibernate.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,5 +22,24 @@ public class UserController {
     @GetMapping("user/{id}")
     public Optional<User> getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping("user/{id}/posts")
+    public List<Post> getAllPostsByUser(@PathVariable Integer id) {
+        Optional<User> user = userService.getUserById(id);
+        if(user.isPresent()) {
+            return user.get().getPosts();
+        }
+        return null;
+    }
+
+    @GetMapping("users/location/{id}/users")
+    public List<User> getUsersByLocation(@PathVariable Integer id) {
+        return userService.getUsersByLocation(id);
+    }
+
+    @PostMapping ("users/addNew")
+    public void AddUser(@RequestBody User user) {
+        userService.addUser(user);
     }
 }
