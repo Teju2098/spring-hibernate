@@ -30,7 +30,7 @@ public class User {
 
     private String email;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL )
     private List<Post> posts;
 @JsonManagedReference
     public List<Post> getPosts() {

@@ -40,4 +40,14 @@ public class LocationController {
         locationService.AddLocation(location);
     }
 
+    @PutMapping("/locations/{id}/update")
+    public void UpdateLocation(@RequestBody Location location) {
+        locationService.UpdateLocation(location);
+    }
+
+    @DeleteMapping("/location/{id}/delete")
+    public void DeleteLocation(@PathVariable Integer id) {
+        locationService.deleteLocation(id);
+    }
+
 }

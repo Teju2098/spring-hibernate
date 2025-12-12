@@ -33,4 +33,13 @@ public class PostController {
     public void AddPost(@RequestBody Post post) {
         postService.addPost(post);
     }
+
+    @PutMapping("/posts/{id}/update")
+    public void UpdatePost(@RequestBody Post post) {
+        postService.updatePost(post);
+    }
+    @DeleteMapping("/post/{id}/delete")
+    public void DeletePost(@PathVariable Integer id) {
+        postService.DeletePost(id);
+    }
 }

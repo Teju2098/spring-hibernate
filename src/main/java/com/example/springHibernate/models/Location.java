@@ -4,10 +4,7 @@ package com.example.springHibernate.models;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import java.util.List;
@@ -20,7 +17,7 @@ public class Location {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     private List<User> users;
 
     @JsonManagedReference
